@@ -1,0 +1,122 @@
+--Criação do Banco de Dados
+CREATE DATABASE db_teste_wk;
+
+--Criação das Tabelas
+CREATE TABLE clientes (
+  Cli_codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Nome VARCHAR(100) NOT NULL,
+  Cidade VARCHAR(70) NOT NULL,
+  UF VARCHAR(2) NOT NULL
+  );
+
+CREATE TABLE produtos (
+    Prod_codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Descricao VARCHAR(140) NOT NULL,
+    preco DECIMAL(15,4) NOT NULL
+);
+
+CREATE TABLE pedidos (
+  Num_pedido INT NOT NULL PRIMARY KEY,
+  Data_emissao DATETIME NOT NULL,
+  Cli_codigo INT NOT NULL,
+  Vl_total DECIMAL(18,2) NOT NULL,
+    
+  CONSTRAINT FK_Cli_codigo 
+  FOREIGN KEY (Cli_codigo) 
+  REFERENCES clientes (Cli_codigo)
+  );
+
+CREATE TABLE item_pedido (
+  Id_item INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  Num_pedido INT NOT NULL,
+  Prod_codigo INT NOT NULL,
+  Quantidade DECIMAL (15,4) NOT NULL,
+  Vl_unitario DECIMAL (15,4) NOT NULL,
+  Vl_total DECIMAL (18,2) NOT NULL,
+
+  CONSTRAINT FK_Num_pedido 
+  FOREIGN KEY (Num_pedido)
+  REFERENCES pedidos(Num_pedido),
+
+  CONSTRAINT FK_Prod_codigo 
+  FOREIGN KEY (Prod_codigo)
+  REFERENCES produtos(Prod_codigo)
+);
+
+-- Insert na tabela clientes
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('JOSÉ MARIA PEREIRA', 'PORTAL DO SUL', 'SP');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('CARLOS ANDRÉ DA CUNHA', 'SOROCABA', 'SP');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('ANTONIO CARLOS MAGALHÃES', 'PELOTAS', 'SC');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('TEREZA CRISTINA DA SILVA', 'BELÉM', 'PA');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('ANDRÉ SILVA SANTOS', 'CASTANHAL', 'PA');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('FELIPE COSTA', 'PONTA PORÃ', 'MS');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('CARLA COSTA FREITAS', 'RECIFE', 'PE');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('MARIA DAS DORES DO PARTO', 'TREMEMBÉ', 'SP');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Paulo Freire', 'CAMPINAS', 'SP');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('JOAQUIM JOSE MEIRA', 'ITUMBIARA', 'GO');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('CLÁUDIO VIEIRA', 'BELÉM', 'PA');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('CLÁUDIA VIANA', 'SALVADOR', 'BA');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('MARIO MARTINS', 'BELO HORIZONTE', 'MG');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('ANTONIA FARIAS', 'MANAUS', 'AM');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Enzo Cardoso', 'SOROCABA', 'SP');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Valentina Souza', 'RECIFE', 'PE');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Emilly Farias', 'AGUAS LINDAS', 'AL');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('João Felipe Jesus', 'JOÃO PESSOA', 'PB');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('João Oliveira', 'VITORIA', 'ES');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('João Guilherme Gomes', 'RIO DE JANEIRO', 'RJ');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Davi Lucca Mendes', 'PARATI', 'RJ');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Bernardo Almeida', 'MACAPA', 'AP');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Emilly Aragão', 'BOA VISTA', 'AC');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Isadora Cardoso', 'CUIABÁ', 'MT');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Luiz Otávio Viana', 'BRASILIA', 'DF');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Isabella Castro', 'SANTA ISABEL', 'PA');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Renan Viana', 'ILHÉUS', 'BA');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Thiago Ribeiro', 'UBERABA', 'MG');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Otávio Rocha', 'MACEIÓ', 'AL');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Nicolas Fernandes', 'ARACAJU', 'SE');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Manuela Pereira', 'SÃO LUIS', 'MA');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Catarina Nascimento', 'CANELAS', 'RS');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Clarice da Costa', 'GRAMADO', 'RS');
+INSERT INTO db_teste_wk.clientes (Nome, Cidade, UF) VALUES ('Maria Vitória Viana', 'NATAL', 'RN');
+
+-- Insert na tabela produtos
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Cadeira', 373.50);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Lampada', 5.80);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Monitor', 465.60);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Teclado', 96.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Mouse', 110.70);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Papel A4', 12.70);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Smartphone', 4816.60);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Televisão', 3647.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Geladeira', 3696.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Fogão', 4030.30);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Máquina de Lavar', 3060.70);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Colher', 48.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Garfo', 45.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Faca', 44.10);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Copo', 43.10);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Toalha de mesa', 185.20);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Toalha de banho', 125.40);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Cabide', 4.90);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Papel de seda', 23.50);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Caneta', 13.70);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Lápis', 8.80);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Borracha', 20.50);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Apontador', 37.20);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Caderno', 57.80);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Mochila', 57.80);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Pen-drive', 104.90);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('HD externo', 530.30);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Pilhas AAA', 40.10);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Bateria', 35.20);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Relógio', 611.70);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Bermuda', 112.70);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Calça', 148.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Camisa', 135.20);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Boné', 188.20);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Óculos', 944.10);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Impressora', 1997.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('NoteBook', 2199.00);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Lapiseira', 12.70);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Quadro', 134.30);
+INSERT INTO db_teste_wk.produtos(Descricao, preco) VALUES ('Fone de ouvido', 176.40);
